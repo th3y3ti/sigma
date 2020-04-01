@@ -11,6 +11,9 @@ here = path.abspath(path.dirname(__file__))
 with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
+with open(path.join(here, 'requirements.txt')) as f:
+    requirements = [ i.strip() for i in f.readlines() ]
+
 setup(
     name='sigmatools',
     version='0.16.0',
@@ -42,9 +45,9 @@ setup(
         'sigma.parser.modifiers',
         ],
     python_requires='~=3.6',
-    install_requires=['PyYAML', 'pymisp', 'progressbar2'],
+    install_requires=requirements,
     extras_require={
-        'test': ['coverage', 'yamllint'],
+        'test': ['coverage', 'yamllint', 'pytest'],
     },
     data_files=[
         ('etc/sigma', [
